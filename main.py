@@ -42,19 +42,20 @@ def check_pos(pos, num):
        result += get_row(pos)
        result += get_col(pos)
        result += get_box(pos)
-       return num in result
+       return num not in result
 
 
 def solve():
     for r in range(9):
         for c in range(9):
-            if puzzle[c][r] == 0:
+            if puzzle[r][c] == 0:
                 for i in range(1, 10):
                     pos = r * 9 + c
                     if check_pos(pos, i):
                         puzzle[r][c] = i
                         solve()
-                puzzle[r][c] = 0
+                    puzzle[r][c] = 0
+                return
+    print(np.matrix(puzzle))
 
-    print(puzzle)
 solve()
